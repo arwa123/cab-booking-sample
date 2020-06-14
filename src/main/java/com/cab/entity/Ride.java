@@ -29,8 +29,11 @@ public class Ride {
 	@Column(name = "driver_id")	
 	Long driverId;
 	
-	@Column(name = "created_at")	
-	Date createdAT = new Date();
+	@Column(name = "start_time")
+	Date startTime = new Date();
+
+	@Column(name = "end_time")
+	Date endTime;
 
 
 }

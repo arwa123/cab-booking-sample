@@ -1,5 +1,5 @@
 package com.cab.constants;
 
-public class Contants {
+public class Constants {
 
 }

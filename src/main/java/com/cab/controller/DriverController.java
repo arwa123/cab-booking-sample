@@ -40,8 +40,7 @@ public class DriverController
 	public Driver updateLocation(@PathVariable(value = "driverId") Long driverId , @RequestBody LocationDto location) {
 
 		Driver d1 = driverRepository.findById(driverId).get();
-		d1.setLatitude(location.getLatitude());
-		d1.setLongitude(location.getLongitude());
+		d1.setLocation(location);
 				
 		return driverRepository.save(d1);
 

@@ -1,14 +1,31 @@
 package com.cab.service;
 
+import com.cab.dao.DriverRepository;
+import com.cab.dao.RiderRepository;
+import com.cab.dto.RideDetail;
+import com.cab.entity.Driver;
+import com.cab.entity.Rider;
+import com.cab.util.Status;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cab.dto.LocationDto;
 import com.cab.entity.Ride;
 
+import java.util.List;
+import java.util.Map;
+import java.util.function.Function;
+import java.util.stream.Collectors;
+
 
 @Service
 public class LocationService {
-	
+
+	@Autowired
+	private DriverRepository driverRepository;
+
+	@Autowired
+	private RiderRepository riderRepository;
 	
 	public Double getDistance(LocationDto loc1, LocationDto loc2) {
 		try {
@@ -21,9 +38,21 @@ public class LocationService {
 
 	}
 
-	public Ride findRide(Long driverId) {
-		
-		return null;
+	public RideDetail findRide(Long riderId) {
+
+		Rider rider = riderRepository.findById(riderId).get();
+		LocationDto riderLocation = rider.getLocation();
+		List<Driver> drivers = driverRepository.findAll();
+
+		 Map<Double, Driver> driverMap = drivers.stream().filter(driver -> driver.getStatus() == Status.online).collect(Collectors.toMap(driver -> getDistance(riderLocation, driver.getLocation()), Function.identity()));
+		Double smallestDistance = driverMap.keySet().stream().min(Double::compareTo).get();
+		Driver nearestDriver = driverMap.get(smallestDistance);
+
+		RideDetail ride = new RideDetail();
+		ride.setDriverContact(nearestDriver.getContact());
+		ride.setDriverName(nearestDriver.getName());
+		ride.setDistance(smallestDistance);
+		return ride;
 	}
 
 }

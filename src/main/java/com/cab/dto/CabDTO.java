@@ -12,8 +12,8 @@ import lombok.NoArgsConstructor;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class CabDTO {
 
-	Long id ;
-	String name ;
+	Long id;
+	String name;
 	LocationDto location;
 
 }

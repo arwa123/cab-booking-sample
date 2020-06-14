@@ -1,12 +1,8 @@
 package com.cab.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
+import com.cab.dto.LocationDto;
 import com.cab.util.Status;
 
 import lombok.Getter;
@@ -27,16 +23,19 @@ public class Driver   {
 	
 	@Column(name = "name")	
 	String name;
-	
-	@Column(name = "latitude")	
-	Double latitude;
-	
-	@Column(name = "longitude")	
-	Double longitude;
+
+	@Column(name = "contact")
+	String contact;
+
+	@Embedded
+	LocationDto location;
 	
 	@Column(name = "status")	
 	Status status;
 
-	
-	
+	@Column(name = "max_radius")
+	Integer maxRadius;
+
+
+
 }

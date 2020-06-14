@@ -5,9 +5,9 @@ spring:
     url: jdbc:mysql://localhost:3306/CAB_SERVICE
     username: root
   jpa:
-    generate-ddl: false
+    generate-ddl: true
     hibernate:
-      ddl-auto: none
+      ddl-auto: update
       naming:
         physical-strategy : org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
     properties:

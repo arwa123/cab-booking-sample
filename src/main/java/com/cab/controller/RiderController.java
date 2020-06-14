@@ -2,22 +2,19 @@ package com.cab.controller;
 
 import javax.validation.Valid;
 
+import com.cab.dto.RideDetail;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cab.dao.RiderRepository;
-import com.cab.entity.Driver;
 import com.cab.entity.Ride;
 import com.cab.entity.Rider;
 import com.cab.service.LocationService;
-import com.cab.util.Status;
 
 @RestController
 @RequestMapping("/v1")
@@ -38,9 +35,9 @@ public class RiderController {
 	
 	
 	@GetMapping(path = "/rider/{riderId}/ride")
-	public Ride findRide(@PathVariable(value = "riderId") Long driverId) {
+	public RideDetail findRide(@PathVariable(value = "riderId") Long riderId) {
 
-		return locationService.findRide(driverId);
+		return locationService.findRide(riderId);
 	}
 
 
