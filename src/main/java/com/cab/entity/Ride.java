@@ -24,7 +24,7 @@ public class Ride {
 	Long userId;
 	
 	@Column(name = "driver_id")	
-	Long driverId;
+	Long driverId; 
 
 	@Embedded
 	@Column(name = "destination")
