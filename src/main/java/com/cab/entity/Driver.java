@@ -3,7 +3,7 @@ package com.cab.entity;
 import javax.persistence.*;
 
 import com.cab.dto.LocationDto;
-import com.cab.util.Status;
+import com.cab.util.DriverStatus;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -30,8 +30,8 @@ public class Driver   {
 	@Embedded
 	LocationDto location;
 	
-	@Column(name = "status")	
-	Status status;
+	@Column(name = "status")
+	DriverStatus driverStatus;
 
 	@Column(name = "max_radius")
 	Integer maxRadius;

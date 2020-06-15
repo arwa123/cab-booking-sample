@@ -5,12 +5,11 @@ import com.cab.dao.RiderRepository;
 import com.cab.dto.RideDetail;
 import com.cab.entity.Driver;
 import com.cab.entity.Rider;
-import com.cab.util.Status;
+import com.cab.util.DriverStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cab.dto.LocationDto;
-import com.cab.entity.Ride;
 
 import java.util.List;
 import java.util.Map;
@@ -44,7 +43,7 @@ public class LocationService {
 		LocationDto riderLocation = rider.getLocation();
 		List<Driver> drivers = driverRepository.findAll();
 
-		 Map<Double, Driver> driverMap = drivers.stream().filter(driver -> driver.getStatus() == Status.online).collect(Collectors.toMap(driver -> getDistance(riderLocation, driver.getLocation()), Function.identity()));
+		 Map<Double, Driver> driverMap = drivers.stream().filter(driver -> driver.getDriverStatus() == DriverStatus.online).collect(Collectors.toMap(driver -> getDistance(riderLocation, driver.getLocation()), Function.identity()));
 		Double smallestDistance = driverMap.keySet().stream().min(Double::compareTo).get();
 		Driver nearestDriver = driverMap.get(smallestDistance);
 

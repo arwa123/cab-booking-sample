@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.cab.dao.DriverRepository;
 import com.cab.dto.LocationDto;
 import com.cab.entity.Driver;
-import com.cab.util.Status;
+import com.cab.util.DriverStatus;
 
 
 @RestController
@@ -47,10 +47,10 @@ public class DriverController
 	}
 	
 	@PutMapping(path = "/driver/{driverId}/availability")
-	public Driver updateAvailability(@PathVariable(value = "driverId") Long driverId , @RequestParam Status status) {
+	public Driver updateAvailability(@PathVariable(value = "driverId") Long driverId , @RequestParam DriverStatus driverStatus) {
 
 		Driver d1 = driverRepository.findById(driverId).get();
-		d1.setStatus(status);
+		d1.setDriverStatus(driverStatus);
 		
 		return driverRepository.save(d1);
 

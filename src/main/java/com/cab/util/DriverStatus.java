@@ -1,6 +1,6 @@
 package com.cab.util;
 
-public enum Status {
+public enum DriverStatus {
 	
 	online , offline;
 
